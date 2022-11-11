@@ -49,9 +49,13 @@ int main() {
 
     printf("VERBES (%d):\n",ver.nb_ver);
     p_cell temp3 = ver.list_ver.head;
+
     while(temp3 != NULL)
     {
-        printf("%s\n",temp3->ws->mot);
+        read_ver(&ver,temp3->ws);
+        printf("%s\n",ver.mot);
+        printf("%s\n",ver.temp);
+        printf("%s\n",ver.accord);
         temp3 = temp3->next;
     }
 

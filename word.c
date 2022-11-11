@@ -136,3 +136,81 @@ void read_adj(p_adjectifs adj, p_word_stock ws)
 }
 
 
+
+void read_ver(p_verbes ver, p_word_stock ws)
+{
+    strcpy(ver->mot,ws->mot);
+
+    char delim[] =": + \n \0 \t";
+    char str[100];
+    strcpy(str,ws->explain);
+
+    char * token;
+    int cpt = 0;
+
+    token = strtok(str,delim);
+    do{
+
+        token = strtok(NULL,delim);
+        cpt++;
+
+    } while (token != NULL);
+
+    char explain_tab[cpt][MAX_SIZE_WORD];
+
+    int i = 0 ;
+    char * token2 = strtok(ws->explain,delim);
+
+    while(i != cpt)
+    {
+        strcpy(explain_tab[i],token2);
+        token2 = strtok(NULL,delim);
+        i++;
+    }
+
+    for(int j = 0; j< cpt; j++)
+    {
+        if(strcmp(explain_tab[j],"IImp\0")==0)
+        {
+            strcat(ver->temp,"Indicatif Imparfait");
+        }
+        if(strcmp(explain_tab[j],"IPre\0")==0)
+        {
+            strcat(ver->temp,"Indicatif Present");
+        }
+        if(strcmp(explain_tab[j],"IPSimp\0")==0)
+        {
+            strcat(ver->temp,"Indicatif Passe Simple");
+        }
+        if(strcmp(explain_tab[j],"SImp\0")==0)
+        {
+            strcat(ver->temp,"Subjonctif Imparfait");
+        }
+        if(strcmp(explain_tab[j],"PPre\0")==0)
+        {
+            strcat(ver->temp,"Participe Present");
+        }
+        if(strcmp(explain_tab[j],"PL\0")==0)
+        {
+            strcat(ver->accord,"Pluriel+");
+        }
+        if(strcmp(explain_tab[j],"SG\0")==0)
+        {
+            strcat(ver->accord,"Sigulier+");
+        }
+        if(strcmp(explain_tab[j],"P3\0")==0)
+        {
+            strcat(ver->accord,"3ePers");
+        }
+        if(strcmp(explain_tab[j],"P2\0")==0)
+        {
+            strcat(ver->accord,"2ePers");
+        }
+        if(strcmp(explain_tab[j],"P1\0")==0)
+        {
+            strcat(ver->accord,"1ePers");
+        }
+    }
+
+}
+
