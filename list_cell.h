@@ -47,6 +47,9 @@ typedef struct adj
 
 typedef struct ver
 {
+    char mot[MAX_SIZE_WORD];
+    char temp[100];
+    char accord[100];
     int nb_ver;
     t_ht_list list_ver;
 
@@ -54,6 +57,9 @@ typedef struct ver
 
 typedef struct nom
 {
+    char mot[MAX_SIZE_WORD];
+    char genre[MAX_SIZE_WORD];
+    char accord[MAX_SIZE_WORD];
     int nb_nom;
     t_ht_list list_nom;
 

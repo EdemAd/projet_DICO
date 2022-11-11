@@ -24,16 +24,26 @@ int main() {
     p_cell temp = nom.list_nom.head;
     while(temp != NULL)
     {
-        printf("%s\n",temp->ws->mot);
+        read_nom(&nom,temp->ws);
+        printf("%s:\n",nom.mot);
+        printf("\t-%s\n",nom.genre);
+        printf("\t-%s\n",nom.accord);
+        printf("\n");
+
         temp =temp->next;
     }
 
     printf("ADJECTIFS (%d):\n",adj.nb_adj);
 
+
     p_cell temp2 = adj.list_adj.head;
     while(temp2 != NULL)
     {
-        printf("%s\n",temp2->ws->mot);
+        read_adj(&adj,temp2->ws);
+        printf("%s:\n",adj.mot);
+        printf("\t-%s\n",adj.genre);
+        printf("\t-%s\n",adj.accord);
+        printf("\n");
         temp2 = temp2->next;
     }
 
