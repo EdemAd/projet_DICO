@@ -4,10 +4,6 @@
 #include "word.h"
 #include "list_cell.h"
 
-
-
-
-
 void read_line(char * filename, p_noms noms, p_verbes verbes, p_adjectifs adjectifs)
 {
     FILE * dico = fopen(filename,"r");
@@ -47,10 +43,7 @@ void read_line(char * filename, p_noms noms, p_verbes verbes, p_adjectifs adject
         } else if (strcmp(categorie, "Adj") == 0) {
             addTail(&adjectifs->list_adj,ws);
             adjectifs->nb_adj++;
-
         }
-        
-
     }
     fclose(dico);
 
@@ -72,7 +65,6 @@ void read_nom(p_noms noms, p_word_stock ws)
 
     if(strcmp(explain1,"Mas\0")==0)
     {
-
         strcpy(noms->genre,"Masculin");
     }
     else if(strcmp(explain1,"Fem\n")==0)
@@ -83,7 +75,6 @@ void read_nom(p_noms noms, p_word_stock ws)
     {
         strcpy(noms->genre,"InvariableGenre");
     }
-
     if(strcmp(explain2,"SG\0")==0)
     {
         strcpy(noms->accord,"Singulier");
@@ -92,7 +83,6 @@ void read_nom(p_noms noms, p_word_stock ws)
     {
         strcpy(noms->accord,"Pluriel");
     }
-
 }
 
 
@@ -112,7 +102,6 @@ void read_adj(p_adjectifs adj, p_word_stock ws)
 
     if(strcmp(explain1,"Mas\0")==0)
     {
-
         strcpy(adj->genre,"Masculin");
     }
     else if(strcmp(explain1,"Fem\n")==0)
@@ -123,7 +112,6 @@ void read_adj(p_adjectifs adj, p_word_stock ws)
     {
         strcpy(adj->genre,"InvariableGenre");
     }
-
     if(strcmp(explain2,"SG\0")==0)
     {
         strcpy(adj->accord,"Singulier");
@@ -132,10 +120,7 @@ void read_adj(p_adjectifs adj, p_word_stock ws)
     {
         strcpy(adj->accord,"Pluriel");
     }
-
 }
-
-
 
 void read_ver(p_verbes ver, p_word_stock ws)
 {
@@ -149,22 +134,24 @@ void read_ver(p_verbes ver, p_word_stock ws)
     int cpt = 0;
 
     token = strtok(str,delim);
-    do{
 
+    while (token != NULL)
+    {
         token = strtok(NULL,delim);
         cpt++;
-
-    } while (token != NULL);
+    }
+    cpt--;
 
     char explain_tab[cpt][MAX_SIZE_WORD];
 
     int i = 0 ;
-    char * token2 = strtok(ws->explain,delim);
+    char * token2;
+    strtok(ws->explain,delim);
 
     while(i != cpt)
     {
-        strcpy(explain_tab[i],token2);
         token2 = strtok(NULL,delim);
+        strcpy(explain_tab[i],token2);
         i++;
     }
 
@@ -211,6 +198,5 @@ void read_ver(p_verbes ver, p_word_stock ws)
             strcat(ver->accord,"1ePers");
         }
     }
-
 }
 

@@ -7,6 +7,8 @@
 
 #define MAX_SIZE_WORD 30
 
+//------------------------------W-STOCK-------------------------------------------//
+
 typedef struct stockage
 {
     char mot[MAX_SIZE_WORD];
@@ -30,10 +32,7 @@ struct s_ht_list
 };
 typedef struct s_ht_list t_ht_list;
 
-
-
-
-//------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------ADJECTIF-------------------------------------------//
 
 typedef struct adj
 {
@@ -41,9 +40,22 @@ typedef struct adj
     char genre[MAX_SIZE_WORD];
     char accord[MAX_SIZE_WORD];
     int nb_adj;
-    t_ht_list list_adj;
-
 }t_adjectifs, * p_adjectifs;
+
+struct adj_cell
+{
+    p_adjectifs adj;
+    struct adj_cell *next;
+};
+typedef struct adj_cell adjectif_cell, *p_adjectif_cell;
+
+typedef struct adj_ht_list
+{
+    p_adjectif_cell head;
+    p_adjectif_cell tail;
+}adjectif_ht_list;
+
+//------------------------------VERBE-------------------------------------------//
 
 typedef struct ver
 {
@@ -51,9 +63,22 @@ typedef struct ver
     char temp[100];
     char accord[100];
     int nb_ver;
-    t_ht_list list_ver;
-
 }t_verbes, * p_verbes;
+
+struct v_cell
+{
+    p_verbes ver;
+    struct v_cell *next;
+};
+typedef struct v_cell verbe_cell, *p_verbe_cell;
+
+typedef struct v_ht_list
+{
+    p_verbe_cell head;
+    p_verbe_cell tail;
+}verbe_ht_list;
+
+//--------------------------------NOM-------------------------------------------//
 
 typedef struct nom
 {
@@ -61,15 +86,22 @@ typedef struct nom
     char genre[MAX_SIZE_WORD];
     char accord[MAX_SIZE_WORD];
     int nb_nom;
-    t_ht_list list_nom;
-
 }t_noms, *p_noms;
 
+struct n_cell
+{
+    p_noms nom;
+    struct n_cell *next;
+};
+typedef struct n_cell nom_cell, *p_nom_cell;
 
+typedef struct n_ht_list
+{
+    p_nom_cell head;
+    p_nom_cell tail;
+}nom_ht_list;
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+//------------------------------ARBRE-------------------------------------------//
 
 typedef struct s_node_nom
 {
