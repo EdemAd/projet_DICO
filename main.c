@@ -20,7 +20,7 @@ int main() {
     read_line("test.txt",&nom,&ver,&adj);
 
 
-    printf("NOM:\n");
+    printf("NOM (%d):\n",nom.nb_nom);
     p_cell temp = nom.list_nom.head;
     while(temp != NULL)
     {
@@ -28,7 +28,7 @@ int main() {
         temp =temp->next;
     }
 
-    printf("\nADJECTIFS:\n");
+    printf("ADJECTIFS (%d):\n",adj.nb_adj);
 
     p_cell temp2 = adj.list_adj.head;
     while(temp2 != NULL)
@@ -37,7 +37,7 @@ int main() {
         temp2 = temp2->next;
     }
 
-    printf("\nVERBES:\n");
+    printf("VERBES (%d):\n",ver.nb_ver);
     p_cell temp3 = ver.list_ver.head;
     while(temp3 != NULL)
     {
