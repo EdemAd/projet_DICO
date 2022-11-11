@@ -5,11 +5,13 @@
 #ifndef PROJET_DICO_LIST_CELL_H
 #define PROJET_DICO_LIST_CELL_H
 
+#define MAX_SIZE_WORD 30
+
 typedef struct stockage
 {
-    char * mot;
-    char * base;
-    char * explain;
+    char mot[MAX_SIZE_WORD];
+    char base[MAX_SIZE_WORD];
+    char explain[MAX_SIZE_WORD];
 
 } word_stock, * p_word_stock;
 
@@ -21,57 +23,73 @@ struct s_cell
 };
 typedef struct s_cell t_cell, *p_cell;
 
-
 struct s_ht_list
 {
     p_cell head;
     p_cell tail;
-
 };
 typedef struct s_ht_list t_ht_list;
 
 
 
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
+typedef struct adj
+{
+    char mot[MAX_SIZE_WORD];
+    char genre[MAX_SIZE_WORD];
+    char accord[MAX_SIZE_WORD];
+    int nb_adj;
+    t_ht_list list_adj;
+
+}t_adjectifs, * p_adjectifs;
+
+typedef struct ver
+{
+    int nb_ver;
+    t_ht_list list_ver;
+
+}t_verbes, * p_verbes;
+
 typedef struct nom
 {
-    int nb_f;
-    t_ht_list liste_f;
+    int nb_nom;
+    t_ht_list list_nom;
 
-}t_nom;
+}t_noms, *p_noms;
 
 
-typedef struct adjectif
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+typedef struct s_node_nom
 {
-    int nb_f;
-    t_ht_list liste_f;
+    p_noms noms;
+    struct s_node_nom * tab[26];
 
-}t_adj;
+} t_node_nom, * p_node_nom;
 
-typedef struct verbe
+typedef struct s_node_ver
 {
-    int nb_f;
-    t_ht_list liste_f;
-}t_ver;
+    p_verbes verbes;
+    struct s_node_ver * tab[26];
 
+} t_node_ver, * p_node_ver;
 
-struct categorie
+typedef struct s_node_adj
 {
-    int nb_ff;
-    t_ht_list liste_ff;
+    p_adjectifs adjectifs;
+    struct s_node_adj* tab[26];
 
-};
-
-typedef struct categorie word_categorie;
+} t_node_adj, * p_node_adj;
 
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-t_ht_list IsEmpty();
-p_cell createCell(p_word_stock);
-void addHead(t_ht_list *, p_word_stock);
-void addTail(t_ht_list * , p_word_stock);
-
-
+p_cell createCell(p_word_stock ws);
+t_ht_list createList();
+void addTail(t_ht_list * list, p_word_stock ws);
 #endif //PROJET_DICO_LIST_CELL_H

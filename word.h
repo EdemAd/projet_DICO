@@ -5,19 +5,14 @@
 #ifndef PROJET_DICO_WORD_H
 #define PROJET_DICO_WORD_H
 
+
+#include "list_cell.h"
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "list_cell.h"
+#define MAX_LINE_SIZE 150
 
-
-
-
-
-
-void read_word( char * , word_categorie *, word_categorie *, word_categorie *);
-void read_categorie(word_categorie wc);
-p_word_stock create_ws();
+void read_line(char *,p_noms, p_verbes, p_adjectifs);
 
 
 #endif //PROJET_DICO_WORD_H

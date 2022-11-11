@@ -1,28 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "word.h"
-#include "list_cell.h"
-
 
 int main() {
 
-    word_categorie cat_adj;
-    cat_adj.nb_ff = 0;
-    cat_adj.liste_ff = IsEmpty();
+    t_noms nom;
+    t_adjectifs adj;
+    t_verbes ver;
 
-    word_categorie cat_ver;
-    cat_ver.nb_ff = 0;
-    cat_ver.liste_ff = IsEmpty();
+    nom.nb_nom = 0;
+    ver.nb_ver = 0;
+    adj.nb_adj = 0;
 
-    word_categorie cat_nom;
-    cat_nom.nb_ff = 0;
-    cat_nom.liste_ff = IsEmpty();
+    nom.list_nom = createList();
+    ver.list_ver = createList();
+    adj.list_adj = createList();
+    read_line("test.txt",&nom,&ver,&adj);
 
-    read_word("test.txt",&cat_adj,&cat_nom,&cat_ver);
 
-    read_categorie(cat_nom);
+    printf("NOM:\n");
+    p_cell temp = nom.list_nom.head;
+    while(temp != NULL)
+    {
+        printf("%s\n",temp->ws->mot);
+        temp =temp->next;
+    }
 
-    printf("%s",cat_nom.liste_ff.head->ws->mot);
+    printf("\nADJECTIFS:\n");
 
-    return 0;
+    p_cell temp2 = adj.list_adj.head;
+    while(temp2 != NULL)
+    {
+        printf("%s\n",temp2->ws->mot);
+        temp2 = temp2->next;
+    }
+
+    printf("\nVERBES:\n");
+    p_cell temp3 = ver.list_ver.head;
+    while(temp3 != NULL)
+    {
+        printf("%s\n",temp3->ws->mot);
+        temp3 = temp3->next;
+    }
+
 }
