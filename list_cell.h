@@ -7,127 +7,133 @@
 
 #define MAX_SIZE_WORD 30
 
-//------------------------------W-STOCK-------------------------------------------//
-
-typedef struct stockage
+typedef struct node_verbe
 {
-    char mot[MAX_SIZE_WORD];
-    char base[MAX_SIZE_WORD];
-    char explain[MAX_SIZE_WORD];
+    char val;
+    struct cell_verbe* liste_fils;
+    struct liste_fleche_verbe* f_fleche;
+}node_verbe;
 
-} word_stock, * p_word_stock;
-
-
-struct s_cell
+typedef struct cell_verbe
 {
-    p_word_stock ws;
-    struct s_cell * next;
-};
-typedef struct s_cell t_cell, *p_cell;
+    struct node_verbe* val;
+    struct cell_verbe* next;
+}cell_verbe;
 
-struct s_ht_list
+typedef struct liste_fleche_verbe
 {
-    p_cell head;
-    p_cell tail;
-};
-typedef struct s_ht_list t_ht_list;
+    struct forme_fleche_verbe *val;
+    struct liste_fleche_verbe* next;
 
-//------------------------------ADJECTIF-------------------------------------------//
+}liste_fleche_verbe;
 
-typedef struct adj
+typedef struct forme_fleche_verbe
 {
-    char mot[MAX_SIZE_WORD];
-    char genre[MAX_SIZE_WORD];
-    char accord[MAX_SIZE_WORD];
-    int nb_adj;
-}t_adjectifs, * p_adjectifs;
+    char *forme;
+    int nb;
+    int personne;
+    char* forme_flechie;
 
-struct adj_cell
+}forme_fleche_verbe;
+
+typedef struct tree_verbe
 {
-    p_adjectifs adj;
-    struct adj_cell *next;
-};
-typedef struct adj_cell adjectif_cell, *p_adjectif_cell;
+    node_verbe root;
 
-typedef struct adj_ht_list
+}tree_verbe;
+
+///--------------------------------------------------nom----------------------------------------------------------------
+
+typedef struct node_nom
 {
-    p_adjectif_cell head;
-    p_adjectif_cell tail;
-}adjectif_ht_list;
+    char val;
+    struct cell_nom* liste_fils;
+    struct liste_fleche_nom* f_fleche;
+}node_nom;
 
-//------------------------------VERBE-------------------------------------------//
-
-typedef struct ver
+typedef struct cell_nom
 {
-    char mot[MAX_SIZE_WORD];
-    char temp[100];
-    char accord[100];
-    int nb_ver;
-}t_verbes, * p_verbes;
+    struct node_nom* val;
+    struct cell_nom* next;
+}cell_nom;
 
-struct v_cell
+typedef struct liste_fleche_nom
 {
-    p_verbes ver;
-    struct v_cell *next;
-};
-typedef struct v_cell verbe_cell, *p_verbe_cell;
+    struct forme_fleche_nom *val;
+    struct liste_fleche_nom* next;
 
-typedef struct v_ht_list
+}liste_fleche_nom;
+
+typedef struct forme_fleche_nom
 {
-    p_verbe_cell head;
-    p_verbe_cell tail;
-}verbe_ht_list;
+    int nb;
+    int personne;
+    char* forme_flechie;
 
-//--------------------------------NOM-------------------------------------------//
+}forme_fleche_nom;
 
-typedef struct nom
+
+typedef struct tree_nom
 {
-    char mot[MAX_SIZE_WORD];
-    char genre[MAX_SIZE_WORD];
-    char accord[MAX_SIZE_WORD];
-    int nb_nom;
-}t_noms, *p_noms;
+    node_nom root;
 
-struct n_cell
+}tree_nom;
+
+///-----------------------------------------------------------------------Adverbe------------------------------------
+
+typedef struct node_adv
 {
-    p_noms nom;
-    struct n_cell *next;
-};
-typedef struct n_cell nom_cell, *p_nom_cell;
+    char val;
+    struct cell_adv* liste_fils;
+    int fin_mot;
+}node_adv;
 
-typedef struct n_ht_list
+typedef struct cell_adv
 {
-    p_nom_cell head;
-    p_nom_cell tail;
-}nom_ht_list;
+    struct node_adv* val;
+    struct cell_adv* next;
+}cell_adv;
 
-//------------------------------ARBRE-------------------------------------------//
-
-typedef struct s_node_nom
+typedef struct tree_adv
 {
-    p_noms noms;
-    struct s_node_nom * tab[26];
+    node_adv root;
 
-} t_node_nom, * p_node_nom;
+}tree_adv;
 
-typedef struct s_node_ver
+///--------------------------------------------------------------------------adjectif-------------------------------
+
+typedef struct node_adj
 {
-    p_verbes verbes;
-    struct s_node_ver * tab[26];
+    char val;
+    struct cell_adj* liste_fils;
+    struct liste_fleche_adj* f_fleche;
+}node_adj;
 
-} t_node_ver, * p_node_ver;
-
-typedef struct s_node_adj
+typedef struct cell_adj
 {
-    p_adjectifs adjectifs;
-    struct s_node_adj* tab[26];
+    struct node_adj* val;
+    struct cell_adj* next;
+}cell_adj;
 
-} t_node_adj, * p_node_adj;
+typedef struct liste_fleche_adj
+{
+    struct forme_fleche_adj *val;
+    struct liste_fleche_adj* next;
+
+}liste_fleche_adj;
+
+typedef struct forme_fleche_adj
+{
+    int nb;
+    int personne;
+    char* forme_flechie;
+}forme_fleche_adj;
+
+typedef struct tree_adj
+{
+    node_adj root;
+
+}tree_adj;
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-
-p_cell createCell(p_word_stock ws);
-t_ht_list createList();
-void addTail(t_ht_list * list, p_word_stock ws);
 #endif //PROJET_DICO_LIST_CELL_H

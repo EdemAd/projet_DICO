@@ -12,11 +12,26 @@
 #include <stdlib.h>
 #define MAX_LINE_SIZE 150
 
-void read_line(char *,p_noms, p_verbes, p_adjectifs);
-void read_nom(p_noms,p_word_stock);
-void read_adj(p_adjectifs, p_word_stock );
-void read_ver(p_verbes, p_word_stock);
 
+typedef struct word_stock
+{
+    char *mot;
+    char *base;
+    char *explain;
+}word_stock,*p_word_stock;
 
-
-#endif //PROJET_DICO_WORD_H
+///--------adv
+node_adv create_node_adv(p_word_stockws,int cmpt);
+void add_adv(p_word_stock ws,tree_adv *tree);
+///--------adj
+node_adj create_node_adj(p_word_stock ws,int cmpt);
+void add_adj(p_word_stock ws,tree_adj *tree);
+void add_forme_flechie_adj(node_adj *new,p_word_stock ws);
+///------------nom
+node_nom create_node_nom(p_word_stock ws,int cmpt);
+void add_nom(p_word_stock ws,tree_nom *tree);
+void add_forme_flechie_nom(node_nom *new,p_word_stock ws);
+///---è------verbe
+node_verbe create_node_verbe(p_word_stock ws,int cmpt);
+void add_verbe(p_word_stock ws,tree_verbe *tree);
+void add_forme_flechie_verbe(node_verbe *new,p_word_stock ws);
